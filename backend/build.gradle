@@ -1,26 +1,34 @@
 buildscript {
-
     repositories {
         mavenLocal()
         jcenter()
     }
 
-
     dependencies {
         classpath buildLibraries.boot_gradle_plugin
-//        classpath buildLibraries.springloaded
     }
 }
 
 plugins {
-	id "com.gorylenko.gradle-git-properties" version "1.4.17"
+    id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'no.tine.hystrix'
+            artifactId 'feign-rest-consumer'
+            from components.java
+        }
+    }
+}
 
 apply plugin: 'org.springframework.boot'
 
 ext {
-	snippetsDir = file('build/generated-snippets')
+    snippetsDir = file('build/generated-snippets')
 }
 
 
@@ -48,7 +56,6 @@ dependencies {
             libraries.spring_boot_admin
 }
 
-
 test {
     jacoco {
         append = false
@@ -58,6 +65,7 @@ test {
 }
 
 jar {
+    archiveName = "app.jar" // "Added" with Dockerfile to image
 }
 
 bootRun {
