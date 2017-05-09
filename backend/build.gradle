@@ -31,10 +31,8 @@ ext {
     snippetsDir = file('build/generated-snippets')
 }
 
-
 sourceSets {
 }
-
 
 configurations {
 }
