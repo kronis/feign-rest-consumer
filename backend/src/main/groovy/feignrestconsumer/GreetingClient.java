@@ -8,7 +8,7 @@ import restproducer.GreetingController;
 /**
  * Created by kronis on 06/04/2017.
  */
-@FeignClient(name = "rest-producer", url = "http://localhost:9090/my-dummy-api", fallback = GreetingClient.GreetingClientFallback.class)
+@FeignClient(name = "rest-producer", url = "http://10.0.1.3:9090/my-dummy-api", fallback = GreetingClient.GreetingClientFallback.class)
 public interface GreetingClient extends GreetingController {
     @Component
     public static class GreetingClientFallback implements GreetingClient {
